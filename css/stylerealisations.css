@@ -1,0 +1,37 @@
+.rea{
+  margin-top: 1%;
+  text-align: center;
+}
+
+.tableaurea, .tdrea{
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 2px solid #333;
+  border-collapse: collapse;
+}
+
+.tannee{
+  width: 10%;
+  border: 2px solid #333;
+}
+
+.theadrea{
+  background-color: rgb(252, 119, 3);
+  text-align: center;
+}
+
+.realisations{
+	text-align: center;
+}
+
+.creations{
+  width: 100%;
+}
+
+.tdmilieu{
+  width: 100%;
+}
+
+.typerea{
+  background-color: #42a7f5;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Présentation Paul Minguet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styleindex.css">
+  <link rel="stylesheet" href="css/stylecontact.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script> 
+    $(function(){
+      $("#footer").load("footer.html"); 
+    });
+  </script>
+</head>
+<body class="page">
+  <script>
+    AOS.init({
+    duration: 1200,
+  });
+  </script>
+  <div id="hautDePage"></div>
+  <h1 class="nom">Paul MINGUET</h1>
+  <p class="etu">étudiant en informatique</p>
+  <img class="pdp" src="images/pdp.jpg" alt="photo de profil"></img>
+
+  <div class="navtop">
+    <div class="topnav" id="myTopnav">
+      <a class="active" href="index.html">Accueil</a>
+      <a href="realisations.html">Réalisations</a>
+      <!-- <a href="projets.html">Projets</a> -->
+      <!--<a href="exp_pro.html">Expériences Professionnelles</a>-->
+      <a href="loisirs.html">Loisirs</a>
+      <a href="cv.html">CV</a>
+      <a class="contactnav" href="contact.html">Contact</a>
+      <div class="en">
+        <a style="height: 0;" href="en/index.html"><img src="images/en.png" alt="en"></a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </div>
+
+<!--                                        Contenu                                        -->
+
+  <div data-aos="fade-in">
+    <p class="citation"><i>"To succeed, work hard, never give up and above all cherish a magnificent obsession."</i></p>
+    <p class="trad"><i>Pour réussir, travailler dur, ne jamais abandonner et surtout chérir une obsession magnifique.</i></p>
+    <p class="citation" style="margin-right: 45%">—Walt Disney</p>
+  </div>
+
+  <p class="bvn" data-aos="fade-in"><i>Bienvenue sur mon site sur lequel vous allez pouvoir me connaître et découvrir mes projets et créations.</i></p>
+
+  <br><br>
+
+  <div data-aos="fade-up">
+    <h2>Présentation</h2>
+    <div class="presentation">
+      <p>Je m'appelle Paul MINGUET, j'ai <b>19</b> ans et je suis <b>étudiant</b> en <b>informatique</b> à l'IUT de Fontainebleau.</p>
+      <!-- <br>
+      <h2>Emplacement de l'IUT</h2>
+
+        <iframe class="plan" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2649.037500601143!2d2.6850413159962754!3d48.39822297924502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5f482d85b7b99%3A0x25ca8642ba306cfc!2sIUT+S%C3%A9nart-Fontainebleau!5e0!3m2!1sfr!2sfr!4v1547397723103" allowfullscreen></iframe><br>
+
+      <br>-->
+      <p>Étant passionné depuis tout petit, je me plais beaucoup dans cet environnement qu'est l'informatique et le numérique. J'aime notamment faire des projets, que ce soit seul ou à plusieurs, j'aime être à l'écoute d'un chef de projet ainsi qu'être écouté en tant que chef de projet. Vous pouvez consulter mes réalisations et mes projets en cours dans les sections <a href="realisations.html">Réalisations</a> et <a href="projets.html">Projets</a>.<br>Je pourrai ainsi vous apporter le maximum de mes <b>compétences</b>, de ma <b>motivation</b> et de ma <b>bonne humeur</b>.</p>
+    </div>
+  </div>
+
+<!--                                        Etudes                                        -->
+  <div data-aos="fade-up">
+    <h2 class="etudes">Etudes</h2>
+    <br>
+    <div class="etugauche">
+      <p>• 2019-... : DUT Informatique, <a href="http://www.u-pec.fr/">Université Paris-Est Créteil (UPEC)</a>, site de <a href="http://www.iutsf.u-pec.fr/accueil-fr/accueil-iut-senart-fontainebleau-805692.kjsp">Fontainebleau</a></p>
+    </div>
+    <div class="etugauchebas">
+      <p>• 2019 : Baccalauréat scientifique mention Assez Bien, <a href=https://lycee-galilee.jimdo.com/>Lycée Galilée</a>, Combs-la-Ville</p>
+    </div>
+    <div class="etudroite">
+      <p>• 2016 : Brevet des collèges mention Bien, collège <a href="http://www.lescitesunies.fr/">Les Cités-Unies</a>, Combs-la-Ville</p>
+    </div>
+  </div>
+
+<!--                                        Contact                                        -->
+  <div data-aos="fade-up">
+    <h2 class="contact">Contact</h2>
+    <br><br>
+    <div class="contact-box">
+      <form method="post" action="mail.php">
+        <div class="user-box">
+            <input type="text" id="name" name="user_name" required/>
+            <label for="name">Nom</label>
+        </div>
+        <div class="user-box">
+            <input type="email" id="email" name="user_mail" required/>
+            <label for="mail">E-mail</label>
+        </div>
+        <div class="user-box">
+            <input type="text" id="sujet" name="user_sujet" required/>
+            <label for="sujet">Objet</label>
+        </div>
+        <div class="user-box">
+            <textarea id="msg" name="user_message" required></textarea>
+            <label for="msg">Message</label>
+        </div>
+        <button type="submit">Envoyer le message</button>
+      </form>
+    </div>
+  </div>
+
+<!--                                        Pied de page                                        -->
+  <div id="footer"></div>
+</body>
+</html>

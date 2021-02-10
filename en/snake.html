@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<title>Snake</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" media="screen" href="../css/style.css">
+		<link rel="stylesheet" media="screen" href="../css/stylecassebriques.css">
+		<script src="../js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script> 
+      $(function(){
+        $("#footer").load("footer.html"); 
+      });
+    </script>
+	</head>
+
+	<body>
+		<div id="hautDePage"></div>
+		<h1><b>Snake</b></h1>
+		<h3><b>Paul Minguet</b></h3>
+
+<!--                  Barre navigation                 -->
+
+		<div class="topnav" id="myTopnav">
+			<a href="#presentation">Project's presentation</a>
+			<a href="#code">Code</a>
+			<a href="#screenshots">Screenshots</a>
+			<a href="#download">Download</a>
+      <div class="en">
+        <a style="height: 0;" href="../snake.html"><img src="../images/fr.png" alt="fr"></a>
+      </div>
+			<a class="contactnav" href="index.html">Back to Home</a>
+			<a class="contactnav" href="realisations.html">Back to Realisations</a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+		<br>
+		<br>
+		<br>
+
+<!--                                        Contenu                                        -->
+
+		<div id="presentation"></div>
+
+		<h2><u><b>Project's presentation</b></u></h2>
+		<br>
+		<p>This project has been my first computer science DUT's group mentored project. We were asked to create a working <a href="https://fr.wikipedia.org/wiki/Snake_(genre_de_jeu_vid%C3%A9o)">snake</a> game including a timer and a score. The snake should be able to eat apples randomly disposed by raw of five on the map. It should get bigger and gain 5 point on the score for each apple it eats. We also needed to make an additionnal "game mode" we would select. With my school classmade, we decided to make a two-player game mode as well as a loading screen.</p>
+
+		<div id="code"></div>
+
+		<h2><u><b>Code</b></u></h2>
+
+		<p>Here is the code: <br/> It's composed of four parts : the game, the snake, the menu and the loading screen.
+
+
+<!--                                        
+	Le code qui va suivre, de la ligne 66 à la ligne 1295, on été  généré automatiquement par le programme du site "developpez.net"; par conséquent, je n'ai pas écris ce code, je l'ai juste
+	réarangé afin qu'il paraisse plus "propre" depuis l'inspecteur d'internet. Je vous résume donc ce qu'il est écrit dans ce code afin que vous puissiez passer à la suite sans pas des heures
+	sur ce bout de code: En premier, il affiche le numéro des lignes (à gauche sur l'affichage) dans un tableau, puis le code du programme est affiché avec différentes couleurs dans les "span"
+	(qui ont la même utilité qu'un "div" mais sur une ligne).
+  De plus, le site validator.w3.org rencontre une erreur car une balise <table> ne peut pas être enfant d'une balise <pre> mais si je retire mes balises <table>, la page est obsolète.
+                                        -->
+
+<!--                                        Code jeu                                        -->
+
+		<div class="bbcode_container">
+	<table><tr>
+	<td style="border: 0; padding: 0; text-align: left">Game's code:</td></tr></table>
+	<pre class="bbcode_code" style="height:204px;"><table><tr><td><div style="border: 1px dashed gray; padding-left: 5px; padding-right: 5px; margin-right: 5px; text-align: right; font-family: monospace">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br />39<br />40<br />41<br />42<br />43<br />44<br />45<br />46<br />47<br />48<br />49<br />50<br />51<br />52<br />53<br />54<br />55<br />56<br />57<br />58<br />59<br />60<br />61<br />62<br />63<br />64<br />65<br />66<br />67<br />68<br />69<br />70<br />71<br />72<br />73<br />74<br />75<br />76<br />77<br />78<br />79<br />80<br />81<br />82<br />83<br />84<br />85<br />86<br />87<br />88<br />89<br />90<br />91<br />92<br />93<br />94<br />95<br />96<br />97<br />98<br />99<br />100<br />101<br />102<br />103<br />104<br />105<br />106<br />107<br />108<br />109<br />110<br />111<br />112<br />113<br />114<br />115<br />116<br />117<br />118<br />119<br />120<br />121<br />122<br />123<br />124<br />125<br />126<br />127<br />128<br />129<br />130<br />131<br />132<br />133<br />134<br />135<br />136<br />137<br />138<br />139<br />140<br />141<br />142<br />143<br />144<br />145<br />146<br />147<br />148<br />149<br />150<br />151<br />152<br />153<br />154<br />155<br />156<br />157<br />158<br />159<br />160<br />161<br />162<br />163<br />164<br />165<br />166<br />167<br />168<br />169<br />170<br />171<br />172<br />173<br />174<br />175<br />176<br />177<br />178<br />179<br />180<br />181<br />182<br />183<br />184<br />185<br />186<br />187<br />188<br />189<br />190<br />191<br />192<br />193<br />194<br />195<br />196<br />197<br />198<br />199<br />200<br />201<br />202<br />203<br />204<br />205<br />206<br />207<br />208<br />209<br />210<br />211<br />212<br />213<br />214<br />215<br />216<br />217<br />218<br />219<br />220<br />221<br />222<br />223<br />224<br />225<br />226<br />227<br />228<br />229<br />230<br />231<br />232<br />233<br />234<br />235<br />236<br />237<br />238<br />239<br />240<br />241<br />242<br />243<br />244<br />245<br />246<br />247<br />248<br />249<br />250<br />251<br />252<br />253<br />254<br />255<br />256<br />257<br />258<br />259<br />260<br />261<br />262<br />263<br />264<br />265<br />266<br />267<br />268<br />269<br />270<br />271<br />272<br />273<br />274<br />275<br />276<br />277<br />278<br />279<br />280<br />281<br />282<br />283<br />284<br />285<br />286<br />287<br />288<br />289<br />290<br />291<br />292<br />293<br />294<br />295<br />296<br />297<br />298<br />299<br />300<br />301<br />302<br />303<br />304<br />305<br />306<br />307<br />308<br />309<br />310<br />311<br />312<br />313<br />314<br />315<br />316<br />317<br />318<br />319<br />320<br />321<br />322<br />323<br />324<br />325<br />326<br />327<br />328<br />329<br />330<br />331<br />332<br />333<br />334<br />335<br />336<br />337<br />338<br />339<br />340<br />341<br />342<br />343<br />344<br />345<br />346<br />347<br />348<br />349<br />350<br />351<br />352<br />353<br />354<br />355<br />356<br />357<br />358<br />359<br />360<br />361<br />362<br />363<br />364<br />365<br />366<br />367<br />368<br />369<br />370<br />371<br />372<br />373<br />374<br />375<br />376<br />377<br />378<br />379<br />380<br />381<br />382<br />383<br />384<br />385<br />386<br />387<br />388<br />389<br />390<br />391<br />392<br />393<br />394<br />395<br />396<br />397<br />398<br />399<br />400<br />401<br />402<br />403<br />404<br />405<br />406<br />407<br />408<br />409<br />410<br />411<br />412<br />413<br />414<br />415<br />416<br />417<br />418<br />419<br />420<br />421<br />422<br />423<br />424<br />425<br />426<br />427<br />428<br />429<br />430<br />431<br />432<br />433<br />434<br />435<br />436<br />437<br />438<br />439<br />440<br />441<br />442<br />443<br />444<br />445<br />446<br />447<br />448<br />449<br />450<br />451<br />452<br />453<br />454<br />455<br />456<br />457<br />458<br />459<br />460<br />461<br />462<br />463<br />464<br />465<br />466<br />467<br />468<br />469<br />470<br />471<br />472<br />473<br />474<br />475<br />476<br />477<br />478<br />479<br />480<br />481<br />482<br />483<br />484<br />485<br />486<br />487<br />488<br />489<br />490<br />491<br />492<br />493<br />494<br />495<br />496<br />497<br />498<br />499<br />500<br />501<br />502<br />503<br />504<br />505<br />506<br /></div></td><td><pre style="margin: 0">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;graph.h&gt;
+#include &lt;time.h&gt;
+#include <span style="color: #FF0000;">&quot;serpent.h&quot;</span>
+#include <span style="color: #FF0000;">&quot;jeu.h&quot;</span>
+#define codeP1x <span style="color: #cc66cc;">20</span>
+#define codebP1y <span style="color: #cc66cc;">26</span>
+#define codeP2x <span style="color: #cc66cc;">20</span>
+#define codebP2y <span style="color: #cc66cc;">28</span>
+#define QUANTITEPOMMEMULTI <span style="color: #cc66cc;">10</span>
+&nbsp;
+&nbsp;
+<span style="color: #0000ff;">int</span> score = <span style="color: #cc66cc;">0</span>;
+<span style="color: #0000ff;">int</span> nvscore = <span style="color: #cc66cc;">0</span>;
+unsigned <span style="color: #0000ff;">int</span> secondes = <span style="color: #cc66cc;">0</span>;
+unsigned <span style="color: #0000ff;">int</span> minutes = <span style="color: #cc66cc;">0</span>;
+unsigned <span style="color: #0000ff;">long</span> depart = <span style="color: #cc66cc;">0</span>;
+&nbsp;
+&nbsp;
+    <span style="color: #808080;">/*------------------------------------initSnake------------------------------------*/</span>
+&nbsp;
+Serpent *initSnake<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+ <span style="color: #0000ff;">int</span> t = <span style="color: #cc66cc;">1</span>;
+ Coordonnees tete;
+ Serpent *leSerpent = initialisation<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+ ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;black&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+ tete = premier<span class="br0">&#40;</span>leSerpent<span class="br0">&#41;</span>;
+ <span style="color: #0000ff;">for</span><span class="br0">&#40;</span>; t&lt;=<span style="color: #cc66cc;">9</span>; t++<span class="br0">&#41;</span><span class="br0">&#123;</span>
+  insertionFin<span class="br0">&#40;</span>leSerpent, tete.x, tete.y+t<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+RemplirRectangle<span class="br0">&#40;</span>tete.x*proporpix,tete.y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;				
+<span style="color: #0000ff;">return</span> leSerpent;
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+    <span style="color: #808080;">/*------------------------------------checkMovSnake------------------------------------*/</span>
+&nbsp;
+Button checkMovSnake<span class="br0">&#40;</span>Button buttonP<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span style="color: #808080;">/*cette fonction a pour usage d'associer a la variable buttonP</span>
+<span style="color: #808080;">&nbsp;   la valeur de la derniere touche préssée*/</span>
+ <span style="color: #0000ff;">if</span><span class="br0">&#40;</span>ToucheEnAttente<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+  <span style="color: #0000ff;">switch</span><span class="br0">&#40;</span>Touche<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>			
+   <span style="color: #0000ff;">case</span> XK_Left :
+   <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Right<span class="br0">&#41;</span>           <span style="color: #808080;">/*cette condition permet d'eviter que le joeur ce retourne sur lui meme on retrouve*/</span>
+   <span class="br0">&#123;</span>                                     <span style="color: #808080;">/*des conditions similaires pour chaque touches*/</span>
+    buttonP.P1 = XK_Right;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P1 = XK_Left;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_Right :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Left<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P1= XK_Left;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P1 = XK_Right;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_Up :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Down<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P1 = XK_Down;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P1 = XK_Up;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_Down :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Up<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P1 = XK_Up;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P1 = XK_Down;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">case</span> XK_q :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_d<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P2 = XK_d;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P2= XK_q;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_d :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_q<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P2 = XK_q;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P2 = XK_d;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_z :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_s<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P2 = XK_s;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P2 = XK_z;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_s :
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_z<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    buttonP.P2 = XK_z;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">else</span><span class="br0">&#123;</span>
+    buttonP.P2 = XK_s;<span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_space :
+  <span style="color: #0000ff;">for</span><span class="br0">&#40;</span>;;<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>Touche<span class="br0">&#40;</span><span class="br0">&#41;</span> == XK_space<span class="br0">&#41;</span><span class="br0">&#123;</span>
+      <span style="color: #0000ff;">break</span>;
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">case</span> XK_Escape :
+  FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  exit<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+<span style="color: #0000ff;">return</span> buttonP;
+<span class="br0">&#125;</span>
+    <span style="color: #808080;">/*------------------------------------movSnake------------------------------------*/</span>
+&nbsp;
+Coordonnees movSnake<span class="br0">&#40;</span>Button buttonP,Coordonnees coactu<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span style="color: #808080;">/*cette donction permet de changer la direction du serpent</span>
+<span style="color: #808080;">&nbsp;   soustrayant/additionant les valeurs d'une variable de type coordoonnees*/</span>
+&nbsp;
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Left<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>   
+    coactu.x--;
+&nbsp;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Right<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    coactu.x++;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Up<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    coactu.y--;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P1 == XK_Down<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    coactu.y++;     
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">return</span> coactu;
+<span class="br0">&#125;</span>
+&nbsp;
+Coordonnees movSnakeP2<span class="br0">&#40;</span>Button buttonP ,Coordonnees coactu<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span style="color: #808080;">/*cette donction permet de changer la direction du serpent</span>
+<span style="color: #808080;">&nbsp;   soustrayant/additionant les valeurs d'une variable de type coordoonnees*/</span>
+&nbsp;
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_q<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>   
+    coactu.x--;
+&nbsp;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_d<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    coactu.x++;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_z<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    coactu.y--;
+  <span class="br0">&#125;</span>
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>buttonP.P2 == XK_s<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    coactu.y++;     
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">return</span> coactu;
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+    <span style="color: #808080;">/*------------------------------------initialise la Fenetre------------------------------------*/</span>
+<span style="color: #0000ff;">void</span> initAffichage<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+ ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;grey&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+ RemplirRectangle<span class="br0">&#40;</span>proporpix,proporpix,colonneMax*proporpix,ligneMax*proporpix<span class="br0">&#41;</span>;
+ ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">107</span>, <span style="color: #cc66cc;">142</span>, <span style="color: #cc66cc;">35</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+ RemplirRectangle<span class="br0">&#40;</span><span style="color: #cc66cc;">20</span>,<span style="color: #cc66cc;">20</span>,colonneMax*proporpix-<span style="color: #cc66cc;">20</span>,ligneMax*proporpix-<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+    <span style="color: #808080;">/*------------------------------------actualise l'affichage------------------------------------*/</span>
+<span style="color: #0000ff;">void</span> actuAffichageP1<span class="br0">&#40;</span>Coordonnees tete,Coordonnees queue<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span style="color: #808080;">/*actualise la position de la tete du snake*/</span>
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;black&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  RemplirRectangle<span class="br0">&#40;</span>tete.x*proporpix,tete.y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+    <span style="color: #808080;">/*efface la derniere valeur de la queue du snake*/</span>
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">107</span>, <span style="color: #cc66cc;">142</span>, <span style="color: #cc66cc;">35</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  RemplirRectangle<span class="br0">&#40;</span>queue.x*proporpix,queue.y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="br0">&#125;</span>
+<span style="color: #0000ff;">void</span> actuAffichageP2<span class="br0">&#40;</span>Coordonnees tete,Coordonnees queue<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span style="color: #808080;">/*actualise la position de la tete du snake*/</span>
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>,<span style="color: #cc66cc;">255</span>,<span style="color: #cc66cc;">255</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  RemplirRectangle<span class="br0">&#40;</span>tete.x*proporpix,tete.y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+    <span style="color: #808080;">/*efface la derniere valeur de la queue du snake*/</span>
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">107</span>, <span style="color: #cc66cc;">142</span>, <span style="color: #cc66cc;">35</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  RemplirRectangle<span class="br0">&#40;</span>queue.x*proporpix,queue.y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+    <span style="color: #808080;">/*------------------------------------Collisions Mur----------------------------------*/</span>
+<span style="color: #0000ff;">void</span> collisionsmurs<span class="br0">&#40;</span>Coordonnees tete<span class="br0">&#41;</span><span class="br0">&#123;</span>
+ <span style="color: #0000ff;">if</span><span class="br0">&#40;</span>tete.x &lt;= <span style="color: #cc66cc;">1</span> || tete.x &gt;= colonneMax || tete.y &lt;= <span style="color: #cc66cc;">1</span> || tete.y &gt;= ligneMax<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    		<span style="color: #808080;">/*fin = 1;*/</span>
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;black&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*proporpix+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Game Over&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*proporpix+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span style="color: #FF0000;">&quot;Game Over&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+  EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*proporpix+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Appuyez sur 'q' pour quitter&quot;</span>, <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*proporpix+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>+<span style="color: #cc66cc;">20</span>, <span style="color: #FF0000;">&quot;Appuyez sur 'q' pour quitter&quot;</span>, <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>;
+  <span style="color: #0000ff;">while</span> <span class="br0">&#40;</span><span style="color: #cc66cc;">1</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+   <span style="color: #0000ff;">if</span><span class="br0">&#40;</span>Touche<span class="br0">&#40;</span><span class="br0">&#41;</span> == XK_q<span class="br0">&#41;</span><span class="br0">&#123;</span>
+&nbsp;
+    FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    exit<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span><span class="br0">&#41;</span>;
+&nbsp;
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+    <span style="color: #808080;">/*------------------------------------Timer----------------------------------*/</span>
+<span style="color: #0000ff;">void</span> timer<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+  <span style="color: #0000ff;">char</span> tpssec<span class="br0">&#91;</span><span style="color: #cc66cc;">10</span><span class="br0">&#93;</span>;
+  <span style="color: #0000ff;">char</span> tpsmin<span class="br0">&#91;</span><span style="color: #cc66cc;">10</span><span class="br0">&#93;</span>;
+  <span style="color: #0000ff;">if</span><span class="br0">&#40;</span><span class="br0">&#40;</span>Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>+CYCLE<span class="br0">&#41;</span> - depart &gt; <span style="color: #cc66cc;">1000000</span>L<span class="br0">&#41;</span><span class="br0">&#123;</span>
+   depart = Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+   ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;black&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+   RemplirRectangle<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span>, ligneMax*proporpix+<span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>colonneMax*proporpix+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>;
+   ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;white&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+   sprintf<span class="br0">&#40;</span>tpssec, <span style="color: #FF0000;">&quot; :%02d &quot;</span>, secondes<span class="br0">&#41;</span>;
+   sprintf<span class="br0">&#40;</span>tpsmin, <span style="color: #FF0000;">&quot;%02d&quot;</span>, minutes<span class="br0">&#41;</span>;
+   EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">30</span>,ligneMax*proporpix+<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">45</span>,tpssec, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+   EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">17</span>,ligneMax*proporpix+<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">45</span>,tpsmin, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+   secondes = secondes + <span style="color: #cc66cc;">1</span>;
+   <span style="color: #0000ff;">if</span><span class="br0">&#40;</span>secondes == <span style="color: #cc66cc;">60</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    secondes = <span style="color: #cc66cc;">0</span>;
+    minutes++;
+  <span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+	<span style="color: #808080;">/*------------------------------------Score----------------------------------*/</span>
+<span style="color: #0000ff;">void</span> addscore<span class="br0">&#40;</span><span style="color: #0000ff;">int</span> nvscore<span class="br0">&#41;</span><span class="br0">&#123;</span>
+  <span style="color: #0000ff;">char</span> nbscore<span class="br0">&#91;</span><span style="color: #cc66cc;">10</span><span class="br0">&#93;</span>;
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;black&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  RemplirRectangle<span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">8.5</span>, ligneMax*proporpix+<span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>colonneMax*proporpix+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>;
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;white&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  sprintf<span class="br0">&#40;</span>nbscore, <span style="color: #FF0000;">&quot; %07d &quot;</span>, score<span class="br0">&#41;</span>;
+  EcrireTexte<span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">8.5</span>,ligneMax*proporpix+<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">45</span>,nbscore, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+  score = score + nvscore;
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+&nbsp;
+    <span style="color: #808080;">/*------------------------------------JEU EN SOLO------------------------------------*/</span>
+<span style="color: #0000ff;">int</span> jeu<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+ Coordonnees tete, queue;
+ <span style="color: #0000ff;">int</span> pommes<span class="br0">&#91;</span>colonneMax<span class="br0">&#93;</span><span class="br0">&#91;</span>ligneMax<span class="br0">&#93;</span>;
+ Button buttonP;
+ buttonP.P1 = XK_Right;
+ <span style="color: #0000ff;">long</span> suivant= Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>+CYCLE;
+ <span style="color: #0000ff;">int</span> i,x,y, placepomme;
+ srand<span class="br0">&#40;</span>time<span class="br0">&#40;</span>NULL<span class="br0">&#41;</span><span class="br0">&#41;</span>;	
+ tete.x = <span style="color: #cc66cc;">20</span>;
+ tete.y = <span style="color: #cc66cc;">26</span>;
+&nbsp;
+ <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>x = <span style="color: #cc66cc;">0</span>; x &lt; colonneMax; ++x<span class="br0">&#41;</span>                                               <span style="color: #808080;">/*initialise le tableau contenant les pommes a 0*/</span>
+ <span class="br0">&#123;</span>
+  <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>y = <span style="color: #cc66cc;">0</span>; y &lt; ligneMax; ++y<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+   pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">0</span>;
+ <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+InitialiserGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+CreerFenetre<span class="br0">&#40;</span>proporpix,proporpix,colonneMax*proporpix+<span style="color: #cc66cc;">20</span>,ligneMax*proporpix+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>; 		<span style="color: #808080;">/*creation fenetre*/</span>
+EffacerEcran<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;				                                <span style="color: #808080;">/*coloration du fond en noir*/</span>						
+ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">107</span>, <span style="color: #cc66cc;">142</span>, <span style="color: #cc66cc;">35</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;			          	          <span style="color: #808080;">/*selection de la couleur*/</span>
+RemplirRectangle<span class="br0">&#40;</span>proporpix,proporpix,colonneMax*proporpix,ligneMax*proporpix<span class="br0">&#41;</span>;		<span style="color: #808080;">/*RemplirRectangle(int x,int y,int l,int h);*/</span>
+Serpent *leSerpent = initSnake<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+initAffichage<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span style="color: #0000ff;">for</span> <span class="br0">&#40;</span> i = <span style="color: #cc66cc;">0</span>; i &lt; QUANTITEPOMME; ++i<span class="br0">&#41;</span>                                               <span style="color: #808080;">/*place des pommes de maniere aléatoire dans le tableau*/</span>
+<span class="br0">&#123;</span> 		
+&nbsp;
+  <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>;;<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+   x = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>colonneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+   y = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>ligneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+&nbsp;
+   <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> == <span style="color: #cc66cc;">0</span> &amp;&amp; x != <span style="color: #cc66cc;">1</span> &amp;&amp; y != <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>
+   <span class="br0">&#123;</span> 
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;                      <span style="color: #808080;">/*affiche les pommes graphiquement*/</span>
+    RemplirRectangle<span class="br0">&#40;</span>x*proporpix,y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+    pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">1</span>;
+&nbsp;
+    <span style="color: #0000ff;">break</span>;
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>;;<span class="br0">&#41;</span>													                            <span style="color: #808080;">/*début du jeu*/</span>
+<span class="br0">&#123;</span>		
+    		<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>ToucheEnAttente<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>								                           <span style="color: #808080;">/*verifie si il y a une touche dans le tampon*/</span>
+  <span class="br0">&#123;</span>
+    				buttonP = checkMovSnake<span class="br0">&#40;</span>buttonP<span class="br0">&#41;</span>;				                     <span style="color: #808080;">/*attribue a buttonP la derniere touche préssé*/</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>&gt;suivant<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>	
+   timer<span class="br0">&#40;</span><span class="br0">&#41;</span>;                                                               <span style="color: #808080;">/*calcul et affiche le temps ecoulé depuis le début de la patie*/</span>
+   addscore<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span><span class="br0">&#41;</span>;                                                           <span style="color: #808080;">/*gere le score et l'affiche*/</span>
+   tete = movSnake<span class="br0">&#40;</span>buttonP,tete<span class="br0">&#41;</span>;                                         <span style="color: #808080;">/*recupere les coordonnées actuelles de la tete*/</span>
+   serpentCannibale<span class="br0">&#40;</span>leSerpent,tete.x,tete.y<span class="br0">&#41;</span>;                             <span style="color: #808080;">/*verifie que le serpent ne ce mord pas si il ce mord le joueur perd*/</span>
+   queue = dernier<span class="br0">&#40;</span>leSerpent<span class="br0">&#41;</span>;                                            <span style="color: #808080;">/*prend les coordonnées de la queue */</span>
+   deplacement<span class="br0">&#40;</span>leSerpent,tete.x,tete.y<span class="br0">&#41;</span>;                                  <span style="color: #808080;">/*gère le deplacement du serpent (voir le rapport)*/</span>
+   collisionsmurs<span class="br0">&#40;</span>tete<span class="br0">&#41;</span>;                                                  <span style="color: #808080;">/*vérifie que le serpent ne heurte pas un mur*/</span>
+&nbsp;
+&nbsp;
+&nbsp;
+   <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>tete.x<span class="br0">&#93;</span><span class="br0">&#91;</span>tete.y<span class="br0">&#93;</span> == <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>                                       <span style="color: #808080;">/*vérifie si la case sur laquelle ce situe la tete du serpent contient une pomme*/</span>
+   <span class="br0">&#123;</span>
+    insertionFin<span class="br0">&#40;</span>leSerpent, queue.x, queue.y<span class="br0">&#41;</span>;                            <span style="color: #808080;">/*ajoute 2 segment aux serpent*/</span>
+    insertionFin<span class="br0">&#40;</span>leSerpent, queue.x, queue.y<span class="br0">&#41;</span>;
+    pommes<span class="br0">&#91;</span>tete.x<span class="br0">&#93;</span><span class="br0">&#91;</span>tete.y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">0</span>;                                           <span style="color: #808080;">/*remet la case contenant la pomme a 0*/</span>
+&nbsp;
+    <span style="color: #0000ff;">do</span>
+    <span class="br0">&#123;</span> placepomme = <span style="color: #cc66cc;">0</span>;
+     x = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>colonneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;                                         <span style="color: #808080;">/*replace une pomme apres qu'elle est été mangé de manière aléatoire*/</span>
+     y = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>ligneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+&nbsp;
+     <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> == <span style="color: #cc66cc;">0</span> &amp;&amp; verifPommePasDansSerpent<span class="br0">&#40;</span>leSerpent,x,y<span class="br0">&#41;</span>&amp;&amp; x != <span style="color: #cc66cc;">1</span> &amp;&amp; y !=<span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>
+     <span class="br0">&#123;</span> 
+&nbsp;
+      addscore<span class="br0">&#40;</span><span style="color: #cc66cc;">5</span><span class="br0">&#41;</span>;
+      ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+      RemplirRectangle<span class="br0">&#40;</span>x*proporpix,y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+      pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">1</span>;
+      placepomme = <span style="color: #cc66cc;">1</span>;
+&nbsp;
+&nbsp;
+    <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+  <span class="br0">&#125;</span><span style="color: #0000ff;">while</span><span class="br0">&#40;</span>placepomme != <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+actuAffichageP1<span class="br0">&#40;</span>tete,queue<span class="br0">&#41;</span>;                                              <span style="color: #808080;">/*actualise l'affichage uniquement du seprent*/</span>
+suivant= Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>+CYCLE;
+<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+Touche<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span style="color: #0000ff;">return</span> EXIT_SUCCESS;
+<span class="br0">&#125;</span>
+<span style="color: #808080;">/*------------------------------------JEU EN MULTIJOUEUR------------------------------------*/</span>
+<span style="color: #808080;">/*fonctionne relativement de la meme maniére que jeu ormis la gestion des collisions entres les joueurs*/</span>
+<span style="color: #0000ff;">int</span> jeuM<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span style="color: #0000ff;">long</span> suivant= Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>+CYCLE;
+  <span style="color: #0000ff;">int</span> i,x,y,placepomme;
+  Coordonnees teteP1, queueP1,teteP2, queueP2;
+  <span style="color: #0000ff;">int</span> pommes<span class="br0">&#91;</span>colonneMax<span class="br0">&#93;</span><span class="br0">&#91;</span>ligneMax<span class="br0">&#93;</span>;
+  Button key;
+  key.P1 = XK_Right;
+  key.P2 = XK_d;
+&nbsp;
+  srand<span class="br0">&#40;</span>time<span class="br0">&#40;</span>NULL<span class="br0">&#41;</span><span class="br0">&#41;</span>;  
+  teteP1.x = <span style="color: #cc66cc;">20</span>;
+  teteP1.y = <span style="color: #cc66cc;">26</span>;
+  teteP2.x = <span style="color: #cc66cc;">20</span>;
+  teteP2.y = <span style="color: #cc66cc;">28</span>;
+&nbsp;
+  <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>x = <span style="color: #cc66cc;">0</span>; x &lt; colonneMax; ++x<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>y = <span style="color: #cc66cc;">0</span>; y &lt; ligneMax; ++y<span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+      pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">0</span>;
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  InitialiserGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  CreerFenetre<span class="br0">&#40;</span>proporpix,proporpix,colonneMax*proporpix+<span style="color: #cc66cc;">20</span>,ligneMax*proporpix+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>;        <span style="color: #808080;">/*creation fenetre*/</span>
+  EffacerEcran<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;                                            <span style="color: #808080;">/*coloration du fond en noir*/</span>                      
+  ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">107</span>, <span style="color: #cc66cc;">142</span>, <span style="color: #cc66cc;">35</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;                                <span style="color: #808080;">/*selection de la couleur*/</span>
+  RemplirRectangle<span class="br0">&#40;</span>proporpix,proporpix,colonneMax*proporpix,ligneMax*proporpix<span class="br0">&#41;</span>;          <span style="color: #808080;">/*RemplirRectangle(int x,int y,int l,int h);*/</span>
+  Serpent *leSerpent = initSnake<span class="br0">&#40;</span>codeP1x, codebP1y<span class="br0">&#41;</span>;
+  Serpent *leConcurrent = initSnake<span class="br0">&#40;</span>codeP2x, codebP2y<span class="br0">&#41;</span>;
+  initAffichage<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+  <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span> i = <span style="color: #cc66cc;">0</span>; i &lt; QUANTITEPOMMEMULTI; ++i<span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>       
+&nbsp;
+    <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>;;<span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+      x = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>colonneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+      y = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>ligneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+&nbsp;
+      <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> == <span style="color: #cc66cc;">0</span> &amp;&amp; x != <span style="color: #cc66cc;">1</span> &amp;&amp; y != <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>
+      <span class="br0">&#123;</span> 
+        ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        RemplirRectangle<span class="br0">&#40;</span>x*proporpix,y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+        pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">1</span>;
+        <span style="color: #0000ff;">break</span>;
+      <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+  <span class="br0">&#125;</span>
+    <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>;;<span class="br0">&#41;</span>                                                                       <span style="color: #808080;">/*début du jeu*/</span>
+  <span class="br0">&#123;</span>       
+            <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>ToucheEnAttente<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>                                                         <span style="color: #808080;">/*verifie si il y a une touche dans le tampon*/</span>
+    <span class="br0">&#123;</span>
+                key = checkMovSnake<span class="br0">&#40;</span>key<span class="br0">&#41;</span>;                                                  <span style="color: #808080;">/*attribue a buttonP la derniere touche préssé*/</span>
+    <span class="br0">&#125;</span>
+        <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>ToucheEnAttente<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>                                                         <span style="color: #808080;">/*verifie si il y a une touche dans le tampon*/</span>
+    <span class="br0">&#123;</span>
+                key = checkMovSnake<span class="br0">&#40;</span>key<span class="br0">&#41;</span>;                                                  <span style="color: #808080;">/*attribue a buttonP la derniere touche préssé*/</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>&gt;suivant<span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>   
+      timer<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+      teteP1 = movSnake<span class="br0">&#40;</span>key,teteP1<span class="br0">&#41;</span>;
+      teteP2 = movSnakeP2<span class="br0">&#40;</span>key,teteP2<span class="br0">&#41;</span>;
+&nbsp;
+      serpentCannibale<span class="br0">&#40;</span>leSerpent,teteP1.x,teteP1.y<span class="br0">&#41;</span>;
+      serpentCannibale<span class="br0">&#40;</span>leConcurrent,teteP2.x,teteP2.y<span class="br0">&#41;</span>;
+      serpentCannibale<span class="br0">&#40;</span>leSerpent,teteP2.x,teteP2.y<span class="br0">&#41;</span>;
+      serpentCannibale<span class="br0">&#40;</span>leConcurrent,teteP1.x,teteP1.y<span class="br0">&#41;</span>;
+&nbsp;
+      queueP1 = dernier<span class="br0">&#40;</span>leSerpent<span class="br0">&#41;</span>;
+      queueP2 = dernier<span class="br0">&#40;</span>leConcurrent<span class="br0">&#41;</span>;
+      deplacement<span class="br0">&#40;</span>leSerpent,teteP1.x,teteP1.y<span class="br0">&#41;</span>;
+      deplacement<span class="br0">&#40;</span>leConcurrent,teteP2.x,teteP2.y<span class="br0">&#41;</span>;
+      collisionsmurs<span class="br0">&#40;</span>teteP1<span class="br0">&#41;</span>;
+      collisionsmurs<span class="br0">&#40;</span>teteP2<span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+&nbsp;
+      <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>teteP1.x<span class="br0">&#93;</span><span class="br0">&#91;</span>teteP1.y<span class="br0">&#93;</span> != <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span>
+      <span class="br0">&#123;</span>
+        insertionFin<span class="br0">&#40;</span>leSerpent, queueP1.x, queueP1.y<span class="br0">&#41;</span>;
+        insertionFin<span class="br0">&#40;</span>leSerpent, queueP1.x, queueP1.y<span class="br0">&#41;</span>;
+        pommes<span class="br0">&#91;</span>teteP1.x<span class="br0">&#93;</span><span class="br0">&#91;</span>teteP1.y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">0</span>;
+&nbsp;
+        <span style="color: #0000ff;">for</span> <span class="br0">&#40;</span>;;<span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+          x = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>colonneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+          y = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>ligneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+&nbsp;
+          <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> == <span style="color: #cc66cc;">0</span> &amp;&amp; verifPommePasDansSerpent<span class="br0">&#40;</span>leSerpent,x,y<span class="br0">&#41;</span>&amp;&amp; verifPommePasDansSerpent<span class="br0">&#40;</span>leConcurrent,x,y<span class="br0">&#41;</span>&amp;&amp; x != <span style="color: #cc66cc;">1</span> &amp;&amp; y !=<span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>
+          <span class="br0">&#123;</span> 
+            ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+            RemplirRectangle<span class="br0">&#40;</span>x*proporpix,y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+            pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">1</span>;
+            <span style="color: #0000ff;">break</span>;
+          <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+        <span class="br0">&#125;</span>
+      <span class="br0">&#125;</span>
+      <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>teteP2.x<span class="br0">&#93;</span><span class="br0">&#91;</span>teteP2.y<span class="br0">&#93;</span> != <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span>
+      <span class="br0">&#123;</span>
+        insertionFin<span class="br0">&#40;</span>leConcurrent, queueP2.x, queueP2.y<span class="br0">&#41;</span>;
+        insertionFin<span class="br0">&#40;</span>leConcurrent, queueP2.x, queueP2.y<span class="br0">&#41;</span>;
+        pommes<span class="br0">&#91;</span>teteP2.x<span class="br0">&#93;</span><span class="br0">&#91;</span>teteP2.y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">0</span>;
+&nbsp;
+        <span style="color: #0000ff;">do</span>
+        <span class="br0">&#123;</span>
+          placepomme = <span style="color: #cc66cc;">0</span>;
+          x = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>colonneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+          y = rand<span class="br0">&#40;</span><span class="br0">&#41;</span>%<span class="br0">&#40;</span>ligneMax-<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span style="color: #cc66cc;">+1</span>;
+&nbsp;
+          <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> == <span style="color: #cc66cc;">0</span> &amp;&amp; verifPommePasDansSerpent<span class="br0">&#40;</span>leSerpent,x,y<span class="br0">&#41;</span>&amp;&amp; verifPommePasDansSerpent<span class="br0">&#40;</span>leConcurrent,x,y<span class="br0">&#41;</span>&amp;&amp; x != <span style="color: #cc66cc;">1</span> &amp;&amp; y !=<span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>
+          <span class="br0">&#123;</span> 
+            ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+            RemplirRectangle<span class="br0">&#40;</span>x*proporpix,y*proporpix,proporpix,proporpix<span class="br0">&#41;</span>;
+            pommes<span class="br0">&#91;</span>x<span class="br0">&#93;</span><span class="br0">&#91;</span>y<span class="br0">&#93;</span> = <span style="color: #cc66cc;">1</span>;
+            placepomme = <span style="color: #cc66cc;">1</span>;
+&nbsp;
+          <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+        <span class="br0">&#125;</span><span style="color: #0000ff;">while</span><span class="br0">&#40;</span>placepomme != <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>;
+      <span class="br0">&#125;</span>
+&nbsp;
+      actuAffichageP1<span class="br0">&#40;</span>teteP1,queueP1<span class="br0">&#41;</span>;
+      actuAffichageP2<span class="br0">&#40;</span>teteP2,queueP2<span class="br0">&#41;</span>;
+      suivant= Microsecondes<span class="br0">&#40;</span><span class="br0">&#41;</span>+CYCLE;
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+  Touche<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span style="color: #0000ff;">return</span> EXIT_SUCCESS;
+<span class="br0">&#125;</span></pre></td></tr></table></pre>
+</div>
+
+
+
+
+<!--                                        Code serpent                                        -->
+
+
+		<div class="bbcode_container">
+	<table><tr>
+	<td style="border: 0; padding: 0; text-align: left">Snake's code :</td></tr></table>
+	<pre class="bbcode_code" style="height:204px;"><table><tr><td><div style="border: 1px dashed gray; padding-left: 5px; padding-right: 5px; margin-right: 5px; text-align: right; font-family: monospace">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br />39<br />40<br />41<br />42<br />43<br />44<br />45<br />46<br />47<br />48<br />49<br />50<br />51<br />52<br />53<br />54<br />55<br />56<br />57<br />58<br />59<br />60<br />61<br />62<br />63<br />64<br />65<br />66<br />67<br />68<br />69<br />70<br />71<br />72<br />73<br />74<br />75<br />76<br />77<br />78<br />79<br />80<br />81<br />82<br />83<br />84<br />85<br />86<br />87<br />88<br />89<br />90<br />91<br />92<br />93<br />94<br />95<br />96<br />97<br />98<br />99<br />100<br />101<br />102<br />103<br />104<br />105<br />106<br />107<br />108<br />109<br />110<br />111<br />112<br />113<br />114<br />115<br />116<br />117<br />118<br />119<br />120<br />121<br />122<br />123<br />124<br />125<br />126<br />127<br />128<br />129<br />130<br />131<br />132<br />133<br />134<br />135<br />136<br />137<br />138<br />139<br />140<br />141<br />142<br />143<br />144<br />145<br />146<br />147<br />148<br />149<br />150<br />151<br />152<br />153<br />154<br />155<br />156<br />157<br />158<br />159<br />160<br />161<br />162<br />163<br />164<br />165<br />166<br />167<br />168<br />169<br />170<br />171<br />172<br />173<br />174<br />175<br />176<br />177<br />178<br />179<br />180<br />181<br />182<br />183<br />184<br />185<br />186<br />187<br />188<br />189<br />190<br />191<br />192<br />193<br />194<br />195<br />196<br />197<br />198<br />199<br />200<br />201<br />202<br />203<br />204<br />205<br />206<br />207<br />208<br />209<br />210<br />211<br />212<br />213<br /></div></td><td><pre style="margin: 0">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;graph.h&gt;
+#include <span style="color: #FF0000;">&quot;serpent.h&quot;</span>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<span style="color: #808080;">/*------------------------------------------&gt; Initialisation &lt;------------------------------------------*/</span>
+&nbsp;
+Serpent *initialisation<span class="br0">&#40;</span><span style="color: #0000ff;">int</span> codebx, <span style="color: #0000ff;">int</span> codeby<span class="br0">&#41;</span><span class="br0">&#123;</span>					<span style="color: #808080;">/*on crée la structure de contrôle Serpent*/</span>
+	Serpent *serpent = malloc<span class="br0">&#40;</span>sizeof<span class="br0">&#40;</span>*serpent<span class="br0">&#41;</span><span class="br0">&#41;</span>;					<span style="color: #808080;">/*On alloue dynamiquement la structure de contrôle*/</span>
+	Corps *corps = malloc<span class="br0">&#40;</span>sizeof<span class="br0">&#40;</span>*corps<span class="br0">&#41;</span><span class="br0">&#41;</span>;							<span style="color: #808080;">/*On alloue dynamiquement le premier élément*/</span>
+&nbsp;
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL || corps == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>							<span style="color: #808080;">/*Si les allocations dynamiques n'ont pas fonctionné: exit*/</span>
+exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+	corps-&gt;cox = codebx;										    <span style="color: #808080;">/*on défini les coordonnées cox et coy de base*/</span>
+corps-&gt;coy = codeby;
+	corps-&gt;suivant = NULL;											<span style="color: #808080;">/*on &quot;termine&quot; la liste chaînée qui mesure un élément*/</span>
+	serpent-&gt;premier = corps;										<span style="color: #808080;">/*le premier élément est corps*/</span>
+&nbsp;
+<span style="color: #0000ff;">return</span> serpent;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*---------------------------------&gt; Insere un element en sebut de chaine&lt;----------------------------------*/</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> insertionDebut<span class="br0">&#40;</span>Serpent *serpent, <span style="color: #0000ff;">int</span> nvCox, <span style="color: #0000ff;">int</span> nvCoy<span class="br0">&#41;</span><span class="br0">&#123;</span>		<span style="color: #808080;">/*on crée la fonction d'insertion*/</span>
+&nbsp;
+	<span style="color: #808080;">/*Création du nouvel élément*/</span>
+&nbsp;
+	Corps *nouveau = malloc<span class="br0">&#40;</span>sizeof<span class="br0">&#40;</span>*nouveau<span class="br0">&#41;</span><span class="br0">&#41;</span>;						<span style="color: #808080;">/*on alloue l'espace nécessaire dans la mémoire*/</span>
+<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL || nouveau == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+	nouveau-&gt;cox = nvCox;											<span style="color: #808080;">/*on donne les nouvelles coordonnées au nouvel élément*/</span>
+nouveau-&gt;coy = nvCoy;
+&nbsp;
+	<span style="color: #808080;">/* Insertion de l'élément au début la liste */</span>
+&nbsp;
+	nouveau-&gt;suivant = serpent-&gt;premier;							<span style="color: #808080;">/*on fait pointer le nouvel élément vers son nouveau suivant (celui de tête)*/</span>
+	serpent-&gt;premier = nouveau;										<span style="color: #808080;">/*on fait pointer serpent vers le nouvel élément*/</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*---------------------------------&gt; Insérer un élément à la fin&lt;-----------------------------------------*/</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> insertionFin<span class="br0">&#40;</span>Serpent *serpent, <span style="color: #0000ff;">int</span> nvCox, <span style="color: #0000ff;">int</span> nvCoy<span class="br0">&#41;</span><span class="br0">&#123;</span>			<span style="color: #808080;">/*on crée la fonction d'insertion*/</span>
+&nbsp;
+	<span style="color: #808080;">/*Création du nouvel élément*/</span>
+&nbsp;
+Corps *nouveau = malloc<span class="br0">&#40;</span>sizeof<span class="br0">&#40;</span>*nouveau<span class="br0">&#41;</span><span class="br0">&#41;</span>;						<span style="color: #808080;">/*on alloue l'espace nécessaire dans la mémoire*/</span>
+&nbsp;
+<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL || nouveau == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+nouveau-&gt;cox = nvCox;											<span style="color: #808080;">/*on donne les nouvelles coordonnées au nouvel élément*/</span>
+nouveau-&gt;coy = nvCoy;
+&nbsp;
+	<span style="color: #808080;">/* Insertion de l'élément */</span>
+&nbsp;
+	nouveau-&gt;suivant = NULL;										<span style="color: #808080;">/*on fait pointer le nouvel élément vers son nouveau suivant le dernier*/</span>
+	Corps* p = serpent-&gt;premier;									<span style="color: #808080;">/*on assigne l'adresse du corps au premier élément*/</span>
+<span style="color: #0000ff;">while</span><span class="br0">&#40;</span>p-&gt;suivant!=NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	p = p-&gt;suivant;
+<span class="br0">&#125;</span>
+&nbsp;
+	p-&gt;suivant=nouveau;												<span style="color: #808080;">/*on fait pointer serpent vers le nouvel élément*/</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*--------------------------------------&gt; Supprimer un élément &lt;---------------------------------------------*/</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> suppression<span class="br0">&#40;</span>Serpent *serpent<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>											<span style="color: #808080;">/*Si la liste est vide: exit*/</span>
+	exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent-&gt;premier != NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>									<span style="color: #808080;">/*Si non vide:*/</span>
+		Corps *aSupprimer = serpent-&gt;premier;						<span style="color: #808080;">/*Assigner à aSupprimer l'adresse de Corps à supprimer*/</span>
+		serpent-&gt;premier = serpent-&gt;premier-&gt;suivant;				<span style="color: #808080;">/*Faire pointer le premier élément vers le nouveau deuxième*/</span>
+		free<span class="br0">&#40;</span>aSupprimer<span class="br0">&#41;</span>;											<span style="color: #808080;">/*Supprimer le premier élément*/</span>
+<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*-----------------------------------------&gt; Afficher liste &lt;-----------------------------------------*/</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> afficherSerpent<span class="br0">&#40;</span>Serpent *serpent<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+		exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+	<span class="br0">&#125;</span>
+	Corps *actuel = serpent-&gt;premier;
+&nbsp;
+	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>actuel != NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+&nbsp;
+		actuel = actuel-&gt;suivant;
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+<span style="color: #808080;">/*-------------------------------&gt; verifie si le serpent ne ce rentre pas dedans &lt;--------------------------------*/</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> serpentCannibale<span class="br0">&#40;</span>Serpent *serpent, <span style="color: #0000ff;">int</span> cosx, <span style="color: #0000ff;">int</span> cosy<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+		exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+	<span class="br0">&#125;</span>
+	Corps *actuel = serpent-&gt;premier;						<span style="color: #808080;">/*on avance vers le premier élement (la tete)*/</span>
+	actuel = actuel-&gt;suivant;								<span style="color: #808080;">/*on avance encore une fois dans la liste puisque le serpent de peut pas s'auto dévorer la tete*/</span>
+&nbsp;
+	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>actuel != NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+		<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>actuel-&gt;cox == cosx &amp;&amp; actuel-&gt;coy == cosy<span class="br0">&#41;</span>
+		<span class="br0">&#123;</span>
+&nbsp;
+			ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParNom<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;black&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+			EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*proporpix+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Game Over&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*proporpix+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span style="color: #FF0000;">&quot;Game Over&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+			EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*proporpix+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Appuyez sur 'q' pour quitter&quot;</span>, <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*proporpix+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>+<span style="color: #cc66cc;">20</span>, <span style="color: #FF0000;">&quot;Appuyez sur 'q' pour quitter&quot;</span>, <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span>;
+			<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span><span style="color: #cc66cc;">1</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+				<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>Touche<span class="br0">&#40;</span><span class="br0">&#41;</span> == XK_q<span class="br0">&#41;</span><span class="br0">&#123;</span>
+&nbsp;
+					FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+					exit<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span><span class="br0">&#41;</span>;
+					<span style="color: #0000ff;">break</span>;
+				<span class="br0">&#125;</span>
+			<span class="br0">&#125;</span>
+		<span class="br0">&#125;</span>
+		actuel = actuel-&gt;suivant;
+	<span class="br0">&#125;</span>															
+<span class="br0">&#125;</span>
+<span style="color: #808080;">/*-----------------------------------------&gt; verifie si la pomme n'apparait pas dans le serpent &lt;--------------------------------*/</span>
+<span style="color: #0000ff;">int</span> verifPommePasDansSerpent<span class="br0">&#40;</span>Serpent *serpent, <span style="color: #0000ff;">int</span> cosx, <span style="color: #0000ff;">int</span> cosy<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	<span style="color: #0000ff;">int</span> check = <span style="color: #cc66cc;">1</span>;
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+		exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+	<span class="br0">&#125;</span>
+	Corps *actuel = serpent-&gt;premier;
+	actuel = actuel-&gt;suivant;
+&nbsp;
+	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>actuel != NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>
+		<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>actuel-&gt;cox == cosx &amp;&amp; actuel-&gt;coy == cosy<span class="br0">&#41;</span>
+		<span class="br0">&#123;</span>
+			check=<span style="color: #cc66cc;">0</span>;
+		<span class="br0">&#125;</span>
+		actuel = actuel-&gt;suivant;
+	<span class="br0">&#125;</span>			
+	<span style="color: #0000ff;">return</span> check;													
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+<span style="color: #808080;">/*-----------------------------------------&gt; chercher dernier élément de la liste &lt;-----------------------------------------*/</span>
+Coordonnees dernier<span class="br0">&#40;</span>Serpent *serpent<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	Coordonnees cofin;											<span style="color: #808080;">/*Initialisation des coordonnées du dernier corps*/</span>
+	<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>										<span style="color: #808080;">/*Erreur si il n'y a pas de corps*/</span>
+	exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+	Corps *actuel = serpent-&gt;premier;							<span style="color: #808080;">/*On initialise le pointeur de la liste chaînée*/</span>
+&nbsp;
+	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>actuel-&gt;suivant != NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>							<span style="color: #808080;">/*Tant que le corps suivant n'est pas NULL (fin de la liste chaînée)*/</span>
+&nbsp;
+		actuel = actuel-&gt;suivant;								<span style="color: #808080;">/*On avance dans la liste*/</span>
+<span class="br0">&#125;</span>
+	cofin.x = actuel-&gt;cox;										<span style="color: #808080;">/*On assigne les coordonnées du dernier corps*/</span>
+cofin.y = actuel-&gt;coy;
+&nbsp;
+<span style="color: #0000ff;">return</span> cofin;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*-----------------------------------------&gt; chercher premier élément de la liste &lt;-----------------------------------------*/</span>
+&nbsp;
+Coordonnees premier<span class="br0">&#40;</span>Serpent *serpent<span class="br0">&#41;</span><span class="br0">&#123;</span>
+Coordonnees codeb;											<span style="color: #808080;">/*Initialisation des coordonnées du dernier corps*/</span>
+&nbsp;
+<span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>serpent == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span>										<span style="color: #808080;">/*Erreur si il n'y a pas de corps*/</span>
+	exit<span class="br0">&#40;</span>EXIT_FAILURE<span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+Corps *actuel = serpent-&gt;premier;							<span style="color: #808080;">/*On initialise le pointeur de la liste chaînée*/</span>
+&nbsp;
+codeb.x = actuel-&gt;cox;										<span style="color: #808080;">/*On assigne les coordonnées du dernier corps*/</span>
+codeb.y = actuel-&gt;coy;
+&nbsp;
+<span style="color: #0000ff;">return</span> codeb;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*-----------------------------------------&gt; deplacement &lt;-----------------------------------------*/</span>
+<span style="color: #808080;">/*cette fonction a pour but de deplacer le serpent*/</span>
+<span style="color: #808080;">/*pour cela nous a chaque mouvement du serpent*/</span>
+<span style="color: #808080;">/*nous envoyons a cette fonction les nouvelles coordonnées de la tete du serpent*/</span>
+<span style="color: #808080;">/*cette fonction décale les anciennes coordonnées de la tete vers l'element suivant*/</span>
+<span style="color: #808080;">/*et ainsi de suite jusqua atteindre la fin de la liste */</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> deplacement<span class="br0">&#40;</span>Serpent *serpent, <span style="color: #0000ff;">int</span> nouvCox, <span style="color: #0000ff;">int</span> nouvCoy<span class="br0">&#41;</span><span class="br0">&#123;</span>	<span style="color: #808080;">/*inverser coordonnées*/</span>
+<span style="color: #0000ff;">int</span> tamponx, tampony, tamponsx, tamponsy;
+Corps *actuel = serpent-&gt;premier;
+Corps *suivant = suivant;
+tamponx = actuel-&gt;cox;											<span style="color: #808080;">/*tamponx --&gt; tampon actuel*/</span>
+tampony = actuel-&gt;coy;
+actuel-&gt;cox = nouvCox;
+actuel-&gt;coy = nouvCoy;
+<span style="color: #0000ff;">for</span><span class="br0">&#40;</span>;actuel-&gt;suivant != NULL;<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>actuel-&gt;suivant == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span><span style="color: #0000ff;">break</span>;<span class="br0">&#125;</span>
+	actuel = actuel-&gt;suivant;
+		tamponsx = actuel-&gt;cox;									<span style="color: #808080;">/*tamponsx --&gt; tampon suivant*/</span>
+	tamponsy = actuel-&gt;coy;
+	actuel-&gt;cox = tamponx;
+	actuel-&gt;coy = tampony;
+	<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>actuel-&gt;suivant == NULL<span class="br0">&#41;</span><span class="br0">&#123;</span><span style="color: #0000ff;">break</span>;<span class="br0">&#125;</span>
+	actuel = actuel-&gt;suivant;
+	tamponx = actuel-&gt;cox;
+	tampony = actuel-&gt;coy;
+	actuel-&gt;cox = tamponsx;
+	actuel-&gt;coy = tamponsy;
+&nbsp;
+<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></td></tr></table></pre>
+</div>
+
+
+
+
+		<!--                                        Code menu                                        -->
+
+
+				<div class="bbcode_container">
+	<table><tr>
+	<td style="border: 0; padding: 0; text-align: left">Menu's code :</td></tr></table>
+	<pre class="bbcode_code" style="height:204px;"><table><tr><td><div style="border: 1px dashed gray; padding-left: 5px; padding-right: 5px; margin-right: 5px; text-align: right; font-family: monospace">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br />39<br />40<br />41<br />42<br />43<br />44<br />45<br />46<br />47<br />48<br />49<br />50<br />51<br /></div></td><td><pre style="margin: 0">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;graph.h&gt;
+#include <span style="color: #FF0000;">&quot;menu.h&quot;</span>
+#define ligneMax <span style="color: #cc66cc;">60</span>
+#define colonneMax <span style="color: #cc66cc;">80</span>
+&nbsp;
+<span style="color: #0000ff;">int</span> menu<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span style="color: #808080;">/* Afficher menu */</span>
+	InitialiserGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    CreerFenetre<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>,<span style="color: #cc66cc;">10</span>,colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span>,ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>;
+    EffacerEcran<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">107</span>, <span style="color: #cc66cc;">142</span>, <span style="color: #cc66cc;">35</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    RemplirRectangle<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span>,<span style="color: #cc66cc;">0</span>,colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span>,ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/fond_g.png&quot;</span>, colonneMax*<span style="color: #cc66cc;">10</span>/<span style="color: #cc66cc;">9</span>, ligneMax*<span style="color: #cc66cc;">10</span>/<span style="color: #cc66cc;">25</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">150</span>, <span style="color: #cc66cc;">150</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/fond_d.png&quot;</span>, <span style="color: #cc66cc;">3</span>*colonneMax*<span style="color: #cc66cc;">10</span>/<span style="color: #cc66cc;">4</span>, ligneMax*<span style="color: #cc66cc;">10</span>/<span style="color: #cc66cc;">25</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">150</span>, <span style="color: #cc66cc;">150</span><span class="br0">&#41;</span>;
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">218</span>, <span style="color: #cc66cc;">165</span>, <span style="color: #cc66cc;">32</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Snake&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">6</span>, <span style="color: #FF0000;">&quot;Snake&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;		<span style="color: #808080;">/*TailleChaineEcran(&quot;Snake&quot;, 2)/2 : prend la moitié de la taille en pixel de &quot;Snake&quot;*/</span>
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">218</span>, <span style="color: #cc66cc;">165</span>, <span style="color: #cc66cc;">32</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;SOLO&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span style="color: #FF0000;">&quot;SOLO&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Multijoueur&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.75</span>, <span style="color: #FF0000;">&quot;Multijoueur&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">100</span>, <span style="color: #cc66cc;">100</span>, <span style="color: #cc66cc;">100</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Quitter&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.2</span>, <span style="color: #FF0000;">&quot;Quitter&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+&nbsp;
+ 	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>True<span class="br0">&#41;</span><span class="br0">&#123;</span>
+ 	<span style="color: #0000ff;">while</span><span class="br0">&#40;</span>SourisCliquee<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	 	SourisPosition<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	 	<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>_X &gt;= <span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;SOLO&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span> &amp;&amp; _X &lt;= <span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>+TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;SOLO&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span> &amp;&amp; _Y &gt;= <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-<span style="color: #cc66cc;">20</span> &amp;&amp; _Y &lt;= <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 		FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	 		<span style="color: #0000ff;">return</span> <span style="color: #cc66cc;">1</span>;				<span style="color: #808080;">/*lance solo*/</span>
+&nbsp;
+	 	<span class="br0">&#125;</span>
+	 	<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>_X &gt;= <span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Multijoueur&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span> &amp;&amp; _X &lt;= <span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>+TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Multijoueur&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span> &amp;&amp; _Y &gt;= <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.75</span>-<span style="color: #cc66cc;">20</span> &amp;&amp; _Y &lt;= <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.75</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 		FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	 		<span style="color: #0000ff;">return</span> <span style="color: #cc66cc;">2</span>;				<span style="color: #808080;">/*lance multijoueur*/</span>
+&nbsp;
+	 	<span class="br0">&#125;</span>
+	 	<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>_X &gt;= <span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Quitter&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span> &amp;&amp; _X &lt;= <span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>+TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Quitter&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span> &amp;&amp; _Y &gt;= <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.2</span>-<span style="color: #cc66cc;">20</span> &amp;&amp; _Y &lt;= <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.2</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 		FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	 		<span style="color: #0000ff;">return</span> <span style="color: #cc66cc;">3</span>;				<span style="color: #808080;">/*Quitte la fenetre*/</span>
+&nbsp;
+&nbsp;
+	 	<span class="br0">&#125;</span>
+	 	<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+	FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	<span style="color: #0000ff;">return</span> EXIT_SUCCESS;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*gcc menu.c -I/home/paul/IUT/PT/bibliotheque-graphique-iut-1.1/src/include -L/home/paul/IUT/PT/bibliotheque-graphique-iut-1.1/src/lib -lgraph*/</span></pre></td></tr></table></pre>
+</div>
+
+
+
+
+		<!--                                        Code chargement                                        -->
+
+
+		<div class="bbcode_container">
+	<table><tr>
+	<td style="border: 0; padding: 0; text-align: left">Loading's code  :</td>
+	<td style="border: 0; padding: 0; text-align: right"><a href="#" onclick="return ano_selectionnerCode(this);">Sélectionner tout</a> -
+	<a href="#" onclick="return ano_etendreCode(this);">Visualiser dans une fenêtre à part</a></td></tr></table>
+	<pre class="bbcode_code" style="height:204px;"><table><tr><td><div style="border: 1px dashed gray; padding-left: 5px; padding-right: 5px; margin-right: 5px; text-align: right; font-family: monospace">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br />39<br />40<br />41<br />42<br />43<br />44<br />45<br />46<br />47<br />48<br />49<br />50<br />51<br />52<br />53<br />54<br />55<br />56<br />57<br />58<br />59<br />60<br />61<br />62<br />63<br />64<br />65<br />66<br />67<br />68<br />69<br />70<br />71<br />72<br />73<br />74<br />75<br />76<br />77<br />78<br />79<br />80<br />81<br />82<br />83<br />84<br /></div></td><td><pre style="margin: 0">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;graph.h&gt;
+#include <span style="color: #FF0000;">&quot;chargement.h&quot;</span>
+#include <span style="color: #FF0000;">&quot;../jeu/jeu.h&quot;</span>
+#define ligneMax <span style="color: #cc66cc;">60</span>
+#define colonneMax <span style="color: #cc66cc;">80</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> solo<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+	ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">255</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/droite.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/gauche.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/haut.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span style="color: #cc66cc;">2</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/bas.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span style="color: #cc66cc;">3</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+	EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>, <span style="color: #FF0000;">&quot;  : mouvement vers la droite&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;		<span style="color: #808080;">/*TailleChaineEcran(&quot;Snake&quot;, 2)/2 : prend la moitié de la taille en pixel de &quot;Snake&quot;*/</span>
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #FF0000;">&quot;  : mouvement vers la gauche&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">2</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;  : mouvement vers le haut&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">3</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;  : mouvement vers le bas&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">4</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;[ESPACE] : Pause&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">5</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;[ESC] : Quitter&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">100</span>, <span style="color: #cc66cc;">100</span>, <span style="color: #cc66cc;">100</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Appuyez sur [ESPACE] pour jouer&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.2</span>, <span style="color: #FF0000;">&quot;Appuyez sur [ESPACE] pour jouer&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+&nbsp;
+    <span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> multi<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+	ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">255</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/droite.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/gauche.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span style="color: #cc66cc;">2</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/haut.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span style="color: #cc66cc;">3</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+    ChargerImage<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;./img/bas.png&quot;</span>, <span style="color: #cc66cc;">0</span>,<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>-<span style="color: #cc66cc;">28</span>+<span style="color: #cc66cc;">4</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">28</span>, <span style="color: #cc66cc;">28</span><span class="br0">&#41;</span>;
+	EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>, <span style="color: #FF0000;">&quot;Joueur 1 (serpent noir) :&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+	EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #FF0000;">&quot;  : mouvement vers la droite&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;		<span style="color: #808080;">/*TailleChaineEcran(&quot;Snake&quot;, 2)/2 : prend la moitié de la taille en pixel de &quot;Snake&quot;*/</span>
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">2</span>*<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #FF0000;">&quot;  : mouvement vers la gauche&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">3</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;  : mouvement vers le haut&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">4</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;  : mouvement vers le bas&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">5</span>*<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #FF0000;">&quot;Joueur 2 (serpent blanc) :&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">6</span>*<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #FF0000;">&quot;D : mouvement vers la droite&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">7</span>*<span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span>, <span style="color: #FF0000;">&quot;Q : mouvement vers la gauche&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">8</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;Z : mouvement vers le haut&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">9</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;S : mouvement vers le bas&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">10</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;[ESPACE] : Pause&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">12</span>+<span style="color: #cc66cc;">11</span>*<span class="br0">&#40;</span><span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">15</span><span class="br0">&#41;</span>, <span style="color: #FF0000;">&quot;[ESC] : Quitter&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+   	ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">100</span>, <span style="color: #cc66cc;">100</span>, <span style="color: #cc66cc;">100</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    EcrireTexte<span class="br0">&#40;</span><span class="br0">&#40;</span>colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>-TailleChaineEcran<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;Appuyez sur [ESPACE] pour jouer&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">2</span>, <span class="br0">&#40;</span>ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>/<span style="color: #cc66cc;">1.</span><span style="color: #cc66cc;">05</span>, <span style="color: #FF0000;">&quot;Appuyez sur [ESPACE] pour jouer&quot;</span>, <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #0000ff;">void</span> chargement<span class="br0">&#40;</span><span style="color: #0000ff;">int</span> mode<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span style="color: #808080;">/* Afficher chargement */</span>
+	InitialiserGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    CreerFenetre<span class="br0">&#40;</span><span style="color: #cc66cc;">10</span>,<span style="color: #cc66cc;">10</span>,colonneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">20</span>,ligneMax*<span style="color: #cc66cc;">10</span>+<span style="color: #cc66cc;">80</span><span class="br0">&#41;</span>;
+    EffacerEcran<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span>, <span style="color: #cc66cc;">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    ChoisirCouleurDessin<span class="br0">&#40;</span>CouleurParComposante<span class="br0">&#40;</span><span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">255</span>, <span style="color: #cc66cc;">255</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+    <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>mode == <span style="color: #cc66cc;">1</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    	solo<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>True<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 		<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>Touche<span class="br0">&#40;</span><span class="br0">&#41;</span> == XK_space<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 			FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+                jeu<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	 			printf<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;espace<span style="color: #800000;">\n</span>&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+	   		<span class="br0">&#125;</span>
+ 		<span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span style="color: #0000ff;">if</span> <span class="br0">&#40;</span>mode == <span style="color: #cc66cc;">2</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    	multi<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    	<span style="color: #0000ff;">while</span> <span class="br0">&#40;</span>True<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 		<span style="color: #0000ff;">if</span><span class="br0">&#40;</span>Touche<span class="br0">&#40;</span><span class="br0">&#41;</span> == XK_space<span class="br0">&#41;</span><span class="br0">&#123;</span>
+	 			FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+                jeuM<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+	 			printf<span class="br0">&#40;</span><span style="color: #FF0000;">&quot;espace<span style="color: #800000;">\n</span>&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+	   		<span class="br0">&#125;</span>
+ 		<span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+	FermerGraphique<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span style="color: #808080;">/*gcc menu.c -I/home/paul/IUT/PT/bibliotheque-graphique-iut-1.1/src/include -L/home/paul/IUT/PT/bibliotheque-graphique-iut-1.1/src/lib -lgraph*/</span></pre></td></tr></table></pre>
+</div>
+
+		<div id="screenshots"></div>
+
+		<h2><u><b>Screenshots</b></u></h2>
+		<div class="photos">
+			<div class="gallery">
+				<a target="_blank" href="snake_solo.png">
+					<img src="../images/snake_solo.png" alt="Snake solo" width="600" height="400">
+				</a>
+				<div class="desc">Solo game</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="snake_multi.png">
+					<img src="../images/snake_multi.png" alt="Snake multi" width="600" height="400">
+				</a>
+				<div class="desc">Multiplayer game</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="snake_menu.png">
+					<img src="../images/snake_menu.png" alt="Snake menu" width="600" height="400">
+				</a>
+				<div class="desc">Game's menu</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="snake_chargement_multi.png">
+					<img src="../images/snake_chargement_multi.png" alt="Snake chargement menu" width="600" height="400">
+				</a>
+				<div class="desc">Loading screen</div>
+			</div>
+		</div>
+		<br>
+		<div id="download"></div>
+
+		<h2 class="telechargement" style="margin-top: 32%"><u><b>Download</b></u></h2>
+
+		<p>You can download my program on the following link : <a href="https://mega.nz/#!f0pxVIiI!PF8XaacmP8USfMH7KECKMMoFtMHjjllOt_1vENOZz0I">Mega Download</a></p>
+
+<!--                                        Pied de page                                        -->
+		
+  <div id="footer"></div>
+	</body>
+
+</html>

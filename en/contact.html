@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/styleindex.css">
+  <link rel="stylesheet" href="../css/stylecontact.css">
+  <script src="../js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script> 
+    $(function(){
+      $("#footer").load("footer.html"); 
+    });
+  </script>
+</head>
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="index.html">Home</a>
+    <a href="realisations.html">Realisations</a>
+    <!--<a href="projects.html">Projects</a>
+    <a href="work_exp.html">Work experiences</a>-->
+    <a href="hobbies.html">Hobbies</a>
+    <a href="cv.html">CV</a>
+    <div class="active">
+      <a class="contactnav" href="contact.html">Contact</a>
+    </div>
+    <div class="en">
+      <a style="height: 0;" href="../contact.html"><img src="../images/fr.png" alt="fr"></a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <br><br>
+
+<!--                                        Formulaire                                        -->
+
+  <h2>Contact</h2>
+  <div class="contact-box">
+    <form method="post" action="mail.php">
+      <div class="user-box">
+          <input type="text" id="name" name="user_name" required/>
+          <label for="name">Name</label>
+      </div>
+      <div class="user-box">
+          <input type="email" id="email" name="user_mail" required/>
+          <label for="mail">E-mail</label>
+      </div>
+      <div class="user-box">
+          <input type="text" id="sujet" name="user_sujet" required/>
+          <label for="sujet">Object</label>
+      </div>
+      <div class="user-box">
+          <textarea id="msg" name="user_message" required></textarea>
+          <label for="msg">Message</label>
+      </div>
+      <button type="submit">Send message</button>
+    </form>
+  </div>
+
+  <h2 class="reseau">Social networks</h2>
+  <div class="logo">
+    <a target="_blank" href="https://www.linkedin.com/in/paul-minguet-07657919a/">
+      <img src="../images/logo_linkedin.png" alt="linkedin" width="24" height="21">
+    </a>
+  </div>
+
+
+<!--                                        Pied de page                                        -->
+
+  <div id="footer"></div>
+</body>
+</html>

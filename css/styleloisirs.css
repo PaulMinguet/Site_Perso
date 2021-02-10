@@ -1,0 +1,22 @@
+.loisirs{
+  text-align: justify;
+  color: white;
+}
+
+.fondloisir{
+	background-image: url("../images/chambre.PNG");
+	background-size: 150%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.box{
+	margin-left: 5%;
+	margin-right: 5%;
+	background-color: rgb(100, 100, 100, 0.95);
+	border-radius: 10px 10px 10px 10px;
+}
+
+.ctrint{
+	color: blue;
+}

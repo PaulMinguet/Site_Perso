@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+
+		<title>Zork</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" media="screen" href="css/style.css">
+		<link rel="stylesheet" media="screen" href="css/stylecassebriques.css">
+		<script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script> 
+      $(function(){
+        $("#footer").load("footer.html"); 
+      });
+    </script>
+	</head>
+
+	<body>
+		<div id="hautDePage"></div>
+		<h1><b>Jeu de Zork</b></h1>
+		<h3><b>Paul Minguet</b></h3>
+
+<!--                  Barre navigation                 -->
+
+		<div class="topnav" id="myTopnav">
+			<a href="#presentation">Présentation du projet</a>
+			<a href="#screenshots">Screenshots</a>
+			<a href="#telechargement">Téléchargement du code</a>
+			<div class="en">
+			    <a style="height: 0;" href="en/zork.html"><img src="images/en.png" alt="en"></a>
+			</div>
+			<a class="contactnav" href="index.html">Retour à l'accueil</a>
+			<a class="contactnav" href="realisations.html">Retour aux réalisations</a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+		<br>
+		<br>
+		<br>
+
+<!--                                        Contenu                                        -->
+
+		<div id="presentation"></div>
+
+		<h2><u><b>Présentation du projet</b></u></h2>
+		<br>
+		<p>Lors d'un projet tuteuré de ma seconde année de DUT informatique, il nous a été donné comme projet de concevoir un modèle persistant pour un jeu de Zork (donné non persistant sous forme d'API) afin de pouvoir effectuer des sauvegardes de ce dernier.</p>
+
+    <h2><b><u>Règles du jeu</u></b></h2>
+    <br>
+    <p>Le joueur se déplace dans des pièces, reliées entre elles par des passages. Les pièces peuvent contenir des objets que le joueur peut transporter et déposer. Le joueur peut agir sur les passages et sur lui-même avec les objets (le mécanisme d’action est très basique). En effet, il peut visualiser les objets présents dans une pièce et dans son sac (matérialisé par l’inventaire), les inspecter, les prendre et les déposer où il le souhaite.</p>
+    <p>Durant son périple, le joueur aura l'occasion de croiser quatre types d'objets : de l'eau, de l'alcool, des trésors ou bien des clés. (<a href="#screenshots">voir screenshots</a>)</p>
+
+    <h2><u><b>L'interface graphique</b></u></h2>
+    <br>
+    <p>Au lancement du programme, le joueur est placé automatiquement dans la première pièce du jeu. Il peut tourner sur lui-même pour choisir une direction. Graphiquement, le joueur peut savoir s’il y a un passage ou non derrière une porte en observant la “lettre de direction” ; le bleu signifie qu’il peut l’emprunter, et le rouge qu’il se trouve face à un mur. En observant l’inventaire de la pièce, il peut savoir s’il y a de l’eau, de l'alcool, une clé ou un trésor. Il peut alors choisir d’emporter les différents objets avec lui.<br><br>S’il a pris une bouteille (d’eau ou d’alcool), il a le choix entre la boire ou bien la remettre dans la pièce (en cliquant dessus). S’il boit la bouteille, alors celle-ci est retirée de l’inventaire du joueur ; sinon, elle est remise dans l’inventaire de la pièce.<br><br>Si le joueur a pris une clé, il peut alors ouvrir un passage fermé à clé (à condition de le trouver). Une fois la clé utilisée, le passage fermé s’ouvre et celle-ci disparaît.<br><br>Il passe alors dans la pièce suivante (cf. capture d’écran ci-dessous), et il navigue ainsi de suite dans chaque pièce à la recherche d’autres breuvages et surtout des trésors ! (<a href="#screenshots">voir screenshots</a>)</p>
+
+
+		<div id="screenshots"></div>
+
+		<h2><u><b>Screenshots</b></u></h2>
+		<div class="photos">
+			<div class="gallery">
+				<a target="_blank" href="./images/interface.png">
+					<img src="./images/interface.png" alt="Interface" width="600" height="400">
+				</a>
+				<div class="desc">Interface</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="./images/mur.png">
+					<img src="./images/mur.png" alt="Mur" width="600" height="400">
+				</a>
+				<div class="desc">Mur</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="./images/cle_porte.png">
+					<img src="./images/cle_porte.png" alt="utilisation clé" width="600" height="400">
+				</a>
+				<div class="desc">Utilisation de la clé</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="./images/boire.png">
+					<img src="./images/boire.png" alt="Boire" width="600" height="400">
+				</a>
+				<div class="desc">Utilisation d'une bouteille</div>
+			</div>
+		</div>
+		<br>
+		<div id="telechargement"></div>
+
+    <br>
+
+		<h2 class="telechargement" style="margin-top: 32%"><u><b>Téléchargement</b></u></h2>
+
+		<p>Vous pouvez télécharger mon programme sur le lien suivant: <a target="_blank" href="https://mega.nz/file/b4pRBQrI#dC_hIrEhw3QpWeTWyCp23X-INkQ7ql7ufrkc3FvgZA0">Téléchargement Mega</a></p>
+
+<!--                                        Pied de page                                        -->
+		<div id="footer"></div>
+	</body>
+
+</html>

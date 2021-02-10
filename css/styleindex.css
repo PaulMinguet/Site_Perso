@@ -1,0 +1,108 @@
+.page{
+	background-image: url("../images/arma_blender_day.png");
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: 50% 3%;
+}
+
+.nom{
+	margin-top: 17%;
+	text-shadow: 5px 5px 5px grey;
+	text-align: center;
+	font-size: 400%;
+	color: #2F4F4F;
+}
+
+.etu{
+  text-align: center;
+  font-size: 200%;
+
+}
+
+.pdp{
+  border-radius: 50%;
+  width: 8%;
+  margin-left: 46%;
+  margin-top: 2%;
+  box-shadow: 0 0 8px 8px white inset;
+}
+
+.navtop{
+  z-index: 4;
+  margin-top: 7.5%;
+  top: 0;
+  position: sticky;
+}
+
+.citation {
+  margin-top: 1%;
+  text-align: center;
+  color: gray;
+  font-family: system-ui;
+}
+
+.trad {
+  margin-top: -1%;
+  text-align: center;
+  color: gray;
+  font-size: 15px;
+  font-family: system-ui;
+}
+
+.bvn{
+  margin-top: 1%;
+  text-align: center;
+}
+
+.presentation{
+  text-align: justify;
+  margin-top : 2%;
+  margin-left : 5%;
+  margin-right : 5%;
+}
+
+.plan{
+  margin-top: 2%;
+  border:0;
+  display: block;
+  margin: 0 auto;
+  width:75%;
+  height:450px;
+  border:0;
+  }
+
+.etudes{
+  margin-top : 2%;
+}
+
+.etugauche{
+  margin-left : 5%;
+  margin-top : 2%;
+}
+
+.etugauchebas{
+  margin-left : 7%;
+  margin-top : 2%;
+}
+
+.etudroite{
+  margin-left : 9%;
+  margin-top : 2%;
+}
+
+/*----------------------------------Responsive-----------------------------------*/
+
+@media screen and (max-width: 600px) {
+  
+  .page{
+  background-position: 50% 3%;
+  }
+
+  .nom{
+    font-size: 200%;
+  }
+
+  .etu{
+    font-size: 100%;
+  }
+}

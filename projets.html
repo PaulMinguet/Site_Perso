@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Projets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styleprojets.css">
+  <script src="js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script> 
+    $(function(){
+      $("#footer").load("footer.html"); 
+    });
+  </script>
+</head>
+<body>
+  <div id="hautDePage"></div>
+
+<!--                  Barre navigation                 -->
+
+  <div class="topnav" id="myTopnav">
+    <a href="index.html">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="projets.html" class="active">Projets</a>
+    <!-- <a href="exp_pro.html">Expériences Professionnelles</a> -->
+    <a href="loisirs.html">Loisirs</a>
+    <a href="cv.html">CV</a>
+    <a class="contactnav" href="contact.html">Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+<!--                              Contenu                              -->
+
+  <br><br>
+  <h2>Projets</h2>
+  <p class="rea"><i> Sur cette page, vous allez pouvoir découvrir tous mes projets en cours liés à l'informatique (demandés par mon établissement et personnels).</i></p>
+  <table class="tableaurea">
+    <thead class="theadproj">
+      <tr>
+        <th colspan="2">Projets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tannee">
+          <p class="realisations">2019-2020</p>
+        </td>
+        <td class="tdrea">
+          <div class="creations">
+            <p>• <b>Projet personnel</b> : Modélisation de l'attraction <a href="https://fr.wikipedia.org/wiki/Armageddon_:_Les_Effets_Sp%C3%A9ciaux">Armageddon : les effets spéciaux</a> de Disneyland Paris sur le logiciel de modélisation 3D <a href="https://www.blender.org/">Blender</a> : <a href="arma.html">Site en développement</a>.</p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<!--                                        Pied de page                                        -->
+  <div id="footer"></div>
+</body>
+</html>

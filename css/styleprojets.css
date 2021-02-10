@@ -1,0 +1,29 @@
+.theadproj{
+  background-color: #42a7f5;
+  text-align: center;
+}
+
+.rea{
+  margin-top: 1%;
+  text-align: center;
+}
+
+.tableaurea, .tdrea{
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 2px solid #333;
+  border-collapse: collapse;
+}
+
+.tannee{
+  width: 10%;
+  border: 2px solid #333;
+}
+
+.realisations{
+	text-align: center;
+}
+
+.creations{
+  width: 100%;
+}

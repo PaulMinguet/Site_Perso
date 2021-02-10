@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Presentation Paul Minguet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/styleindex.css">
+  <link rel="stylesheet" href="../css/stylecontact.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script> 
+    $(function(){
+      $("#footer").load("footer.html"); 
+    });
+  </script>
+</head>
+<body class="page">
+  <script>
+    AOS.init({
+    duration: 1200,
+  });
+  </script>
+</head>
+<body class="page">
+  <div id="hautDePage"></div>
+  <h1 class="nom">Paul MINGUET</h1>
+  <p class="etu">Computer Science student</p>
+  <img class="pdp" src="../images/pdp.jpg" alt="profile picture"></img>
+
+  <div class="navtop">
+    <div class="topnav" id="myTopnav">
+      <a class="active" href="index.html">Home</a>
+      <a href="realisations.html">Realisations</a>
+      <!--<a href="projects.html">Projects</a>
+      <a href="work_exp.html">Work experiences</a>-->
+      <a href="hobbies.html">Hobbies</a>
+      <a href="cv.html">CV</a>
+      <a class="contactnav" href="contact.html">Contact</a>
+      <div class="en">
+        <a style="height: 0;" href="../index.html"><img src="../images/fr.png" alt="fr"></a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </div>
+
+<!--                                        Contenu                                        -->
+
+  <a href="../index.html"><img src="../images/fr.png" alt="fr" class="langue"></a>
+
+  <div data-aos="fade-in">
+    <p class="citation"><i>"To succeed, work hard, never give up and above all cherish a magnificent obsession."</i></p>
+    <p class="citation" style="margin-right: 45%">—Walt Disney</p>
+  </div>
+
+  <p class="bvn" data-aos="fade-in"><i>Welcome on my website where you will be able to know me and to discover my projects and creations.</i></p>
+
+  <br><br>
+
+  <div data-aos="fade-up">
+    <h2>Presentation</h2>
+    <div class="presentation">
+      <p>I am Paul MINGUET, <b>19</b> and I am a <b>computer science student</b> at the Fontainebleau's University Institute of Technology.</p>
+      <br>
+      <!--<h2>Emplacement de l'IUT</h2>
+
+      <iframe class="plan" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2649.037500601143!2d2.6850413159962754!3d48.39822297924502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5f482d85b7b99%3A0x25ca8642ba306cfc!2sIUT+S%C3%A9nart-Fontainebleau!5e0!3m2!1sfr!2sfr!4v1547397723103" allowfullscreen></iframe><br>
+
+      <br>-->
+      <p>Passionate since a child, I really like myself in this environnement which is the computer and numeric science. I like to make projects, either alone or in group, I like to listen to a group leader and also to be listened as a leader. You can see my realisations and my ongoing projects in the sections <a href="realisations_en.html">Realisations</a> and <a href="projects_en.html">Projects</a>.<br>I could thus bring you the maximum of my <b>skills</b>, my <b>motivation</b> and my <b>good mood</b>.</p>
+    </div>
+  </div>
+
+<!--                                        Etudes                                        -->
+  <div data-aos="fade-up">
+    <h2 class="etudes">Studies</h2>
+    <br>
+    <div class="etugauche">
+     <p>• 2016 : General Certificate of Secondary Education with distinction, college <a href="http://www.lescitesunies.fr/">Les Cités-Unies</a>, Combs-la-Ville</p>
+    </div>
+    <div class="etugauchebas">
+      <p>• 2019 : Bachelor's degree with distinction, <a href=https://lycee-galilee.jimdo.com/>Lycée Galilée</a>, Combs-la-Ville</p>
+    </div>
+    <div class="etudroite">
+      <p>• 2019-... : Computer science DUT, <a href="http://www.u-pec.fr/">Université Paris-Est Créteil (UPEC)</a>, on <a href="http://www.iutsf.u-pec.fr/accueil-fr/accueil-iut-senart-fontainebleau-805692.kjsp">Fontainebleau</a></p>
+    </div>
+  </div>
+
+<!--                                        Contact                                        -->
+  <div data-aos="fade-up">
+    <h2 class="contact">Contact</h2>
+    <br><br>
+    <div class="contact-box">
+      <form method="post" action="mail.php">
+        <div class="user-box">
+            <input type="text" id="name" name="user_name" required/>
+            <label for="name">Name</label>
+        </div>
+        <div class="user-box">
+            <input type="email" id="email" name="user_mail" required/>
+            <label for="mail">E-mail</label>
+        </div>
+        <div class="user-box">
+            <input type="text" id="sujet" name="user_sujet" required/>
+            <label for="sujet">Object</label>
+        </div>
+        <div class="user-box">
+            <textarea id="msg" name="user_message" required></textarea>
+            <label for="msg">Message</label>
+        </div>
+        <button type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+
+<!--                                        Pied de page                                        -->
+  <div id="footer"></div>
+</body>
+</html>

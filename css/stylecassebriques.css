@@ -1,0 +1,271 @@
+html{
+  scroll-behavior: smooth;
+}
+
+ul {
+  position: sticky;
+  top: 0;
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  color: lightgrey;
+  font-size: 50px;
+}
+
+h2 {
+  text-align: center;
+  color: orange;
+}
+
+h3 {
+  text-align: center;
+  color: grey;
+  font-size: 30px;
+}
+h4 {
+  text-align: center;
+  color: orange;
+  font-size: 15px;
+}
+
+p{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+a{
+  color: darkblue;
+}
+
+a:hover{
+  color: lightblue;
+}
+
+table{
+  cellspacing: 0;
+  cellpadding: 0;
+}
+
+td{
+  valign: top;
+  width: 40;
+}
+
+.telechargement{
+  margin-top: 25%;
+}
+
+.navprog{
+  z-index: 1;
+}
+
+.photos {
+  display: block;
+  margin-left: 12%; 
+  text-align: center;
+  z-index: 3;
+}
+
+.gallery {
+  margin-left: 5%;
+  border: 1px solid white;
+  float: left;
+  width: 300px;
+  z-index: 3;
+}
+
+.gallery:hover {
+  border: 1px solid #777;
+}
+
+.gallery img {
+  width: 300px;
+  height: 188px;
+}
+
+.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.bbcode_container {
+  margin:20px;
+  margin-top:5px;
+  display:block;
+}
+
+.bbcode_container .bbcode_desc {
+  margin-bottom:2px;
+  font-size:11px;
+}
+/*text-align should alwais be LTR for the CODE blocks*/
+.bbcode_container div.bbcode_code,
+.bbcode_container pre.bbcode_code {
+  margin:0;
+  padding:6px;
+  border:1px inset;
+  text-align:left;
+  overflow:scroll;
+  direction:ltr;
+  background:#f2f6f8 none repeat-x  ;
+  font-size:12px; 
+}
+
+.bbcode_container code.bbcode_code {
+  margin:0;
+  text-align:left;
+  direction:ltr;
+  font-size:12px; 
+}
+
+.bbcode_container code.bbcode_code code {
+  white-space:nowrap;
+}
+
+.bbcode_container div.bbcode_quote {
+  margin:0 10px;
+  margin-bottom: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #f2f6f8 none   ;
+  border-radius: 5px;
+  border: 1px solid #417394;
+  font: italic  normal 13px Tahoma,Calibri,Verdana,Geneva,sans-serif;
+  position: relative;
+  top: 0;
+}
+
+.bbcode_container .bbcode_quote_container {
+  background: transparent url(https://forum.developpez.be/images/misc/quote-left.png) no-repeat  left;
+  display:block;
+  width: 9px;
+  height: 13px;
+  position: absolute;
+  top: 5;
+  left: -9px;
+}
+
+.bbcode_quote div.quote_container {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.bbcode_quote .bbcode_postedby img {
+  position: relative;
+  top: 1px;
+}
+
+.bbcode_container div.bbcode_quote.printable {
+  background:none;
+  border:none;
+}
+
+.bbcode_container div.bbcode_quote div.message {
+  /*font-style:italic;*/
+  padding:8px 0px;
+}
+
+/* fix the bug where li's in quotes are floated */
+.bbcode_container div.bbcode_quote div.message ol>li, .bbcode_container div.bbcode_quote div.message ul>li{
+  float: none;
+}
+
+
+blockquote.preview .bbcode_container div.bbcode_code,
+blockquote.preview .bbcode_container pre.bbcode_code {
+  margin:0;
+  padding:6px;
+  border:1px inset;
+  text-align:left;
+  overflow:auto;
+  direction:ltr;
+  background:#f2f6f8 none repeat-x  ;
+  font-size:12px;
+}
+
+blockquote.preview .bbcode_container code.bbcode_code {
+  margin:0;
+  text-align:left;
+  direction:ltr;
+  font-size:12px;
+}
+
+blockquote.preview .bbcode_container code.bbcode_code code {
+  white-space:nowrap;
+}
+
+blockquote.preview fieldset.postattachlist {
+  background:#FFFFFF none repeat-x center bottom;
+  border-top:solid 1px #cedfeb;
+  padding-bottom:1em;
+}
+
+blockquote.preview .bbcode_container div.bbcode_quote {
+  margin:0 10px;
+  margin-bottom: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #f2f6f8 none   ;
+  border-radius: 5px;
+  border: 1px solid #417394;
+  font: italic  normal 13px Tahoma,Calibri,Verdana,Geneva,sans-serif;
+  position: relative;
+  top: 0;
+}
+
+
+blockquote.preview .bbcode_container .bbcode_quote_container {
+  background: transparent url(https://forum.developpez.be/images/misc/quote-left.png) no-repeat  left;
+  display:block;
+  width: 9px;
+  height: 13px;
+  position: absolute;
+  top: 5;
+  left: -9px;
+}
+
+.telechargement{
+  margin-top: 20%;
+}
+
+@media screen and (max-width: 600px) {
+  .photos {
+    margin-left: 5%; 
+  }
+
+  .bbcode_container .bbcode_desc {
+    font-size:5.5px;
+  }
+  /*text-align should alwais be LTR for the CODE blocks*/
+  .bbcode_container div.bbcode_code,
+  .bbcode_container pre.bbcode_code {
+    font-size:10px; 
+  }
+
+  .bbcode_container code.bbcode_code {
+    font-size:6px; 
+  }
+}

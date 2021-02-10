@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+
+		<title>Zork</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" media="screen" href="../css/style.css">
+		<link rel="stylesheet" media="screen" href="../css/stylecassebriques.css">
+		<script src="../js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script> 
+      $(function(){
+        $("#footer").load("footer.html"); 
+      });
+    </script>
+	</head>
+
+	<body>
+		<div id="hautDePage"></div>
+		<h1><b>Zork Game</b></h1>
+		<h3><b>Paul Minguet</b></h3>
+
+<!--                  Barre navigation                 -->
+
+		<div class="topnav" id="myTopnav">
+			<a href="#presentation">Project's presentation</a>
+			<a href="#screenshots">Screenshots</a>
+			<a href="#download">Download</a>
+			<div class="en">
+		        <a style="height: 0;" href="../zork.html"><img src="../images/fr.png" alt="fr"></a>
+		    </div>
+			<a class="contactnav" href="index.html">Back to Home</a>
+			<a class="contactnav" href="realisations.html">Back to Realisations</a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+		<br>
+		<br>
+		<br>
+
+<!--                                        Contenu                                        -->
+		<div id="presentation"></div>
+
+		<h2><u><b>Project's presentation</b></u></h2>
+		<br>
+		<p>During a tutored project of my second year of computer science DUT, it was given to us as a project to design a persistent model for a Zork game (given non-persistent in the form of an API) in order to be able to make backups of it.</p>
+
+    <h2><b><u>Game rules</u></b></h2>
+    <br>
+    <p>The player moves through rooms, connected by passages. The rooms may contain objects that the player can carry and put down. The player can act on the passages and on himself with the objects (the action mechanism is very basic). He can view the objects in a room and in his bag (materialized by the inventory), inspect them, pick them up and put them where he wants.</p>
+    <p>During his or her journey, the player will come across four types of objects: water, alcohol, treasures or keys. (<a href="#screenshots">see screenshots</a>)</p>
+
+    <h2><u><b>The graphic interface</b></u></h2>
+    <br>
+    <p>When the program starts, the player is automatically placed in the first room of the game. He can turn on himself to choose a direction. Graphically, the player can tell if there is a passage or not behind a door by looking at the "direction letter"; blue means he can go through it, and red means he is facing a wall. By looking at the inventory of the room, he can tell if there is water, alcohol, a key or treasure. He can then choose to take the different objects with him.<br><br> If he has taken a bottle (of water or alcohol), he has the choice of drinking it or putting it back in the room (by clicking on it). If he drinks the bottle, then it is removed from the player's inventory; if not, it is put back in the room inventory.<br><br> If the player has taken a key, then he can open a locked passage (provided he can find it). Once the key is used, the closed passage opens and the key disappears.<br><br> He then moves on to the next room (see screenshot below), and so on in each room looking for other drinks and especially treasures ! (<a href="#screenshots">see screenshots</a>)</p>
+
+
+		<div id="screenshots"></div>
+
+		<h2><u><b>Screenshots</b></u></h2>
+		<div class="photos">
+			<div class="gallery">
+				<a target="_blank" href="../images/interface.png">
+					<img src="../images/interface.png" alt="Interface" width="600" height="400">
+				</a>
+				<div class="desc">Interface</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="../images/mur.png">
+					<img src="../images/mur.png" alt="Wall" width="600" height="400">
+				</a>
+				<div class="desc">Wall</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="../images/cle_porte.png">
+					<img src="../images/cle_porte.png" alt="key usage" width="600" height="400">
+				</a>
+				<div class="desc">Usage of a key</div>
+			</div>
+
+			<div class="gallery">
+				<a target="_blank" href="../images/boire.png">
+					<img src="../images/boire.png" alt="bottle usage" width="600" height="400">
+				</a>
+				<div class="desc">Usage of a bottle</div>
+			</div>
+		</div>
+		<br>
+		<div id="download"></div>
+
+    <br>
+
+		<h2 class="telechargement" style="margin-top: 32%"><u><b>Download</b></u></h2>
+
+		<p>You can download my program on the following link : <a target="_blank" href="https://mega.nz/file/b4pRBQrI#dC_hIrEhw3QpWeTWyCp23X-INkQ7ql7ufrkc3FvgZA0">Mega download</a></p>
+
+<!--                                        Pied de page                                        -->
+		<div id="footer"></div>
+	</body>
+
+</html>
